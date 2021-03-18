@@ -57,7 +57,7 @@ class MealDetailScrean extends StatelessWidget {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -81,10 +81,10 @@ class MealDetailScrean extends StatelessWidget {
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(10),
       ),
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.all(30),
       padding: EdgeInsets.all(10),
       height: 200,
-      width: 300,
+      width: double.infinity,
       child: child,
     );
   }
