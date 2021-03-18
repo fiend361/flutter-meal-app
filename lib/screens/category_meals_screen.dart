@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:meal_app/widgets/meal_item.dart';
+import '../dummy_data.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
   static const routeName = 'category-meals';
@@ -17,6 +19,9 @@ class CategoryMealsScreen extends StatelessWidget {
 
     final categoryId = routeArgs['id'];
     final categoryTitle = routeArgs['title'];
+    final categoryMeals = DUMMY_MEALS.where((meal) {
+      return meal.categories.contains(categoryId);
+    }).toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -24,9 +29,15 @@ class CategoryMealsScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
-          return;
+          return MealItem(
+            affordability: categoryMeals[index].affordability,
+            complexity: categoryMeals[index].complexity,
+            duration: categoryMeals[index].duration,
+            imageUrl: categoryMeals[index].imageUrl,
+            title: categoryMeals[index].title,
+          );
         },
-        itemCount: 1,
+        itemCount: categoryMeals.length,
       ),
     );
   }
