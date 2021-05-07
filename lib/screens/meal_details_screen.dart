@@ -6,6 +6,11 @@ import '../dummy_data.dart';
 class MealDetailScrean extends StatelessWidget {
   static const String routeName = '/meal-detail';
 
+  final Function toggleFavorite;
+  final Function isFavorite;
+
+  MealDetailScrean(this.toggleFavorite, this.isFavorite);
+
   @override
   Widget build(BuildContext context) {
     final mealId = ModalRoute.of(context).settings.arguments as String;
@@ -14,6 +19,14 @@ class MealDetailScrean extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('${selectedMeal.title}'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              isFavorite(mealId) ? Icons.favorite : Icons.favorite_border,
+            ),
+            onPressed: () => toggleFavorite(mealId), // error here
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
